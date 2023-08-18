@@ -48,5 +48,11 @@ define Package/sipserver/install
 	$(INSTALL_BIN) ./files/sipserver.init $(1)/etc/init.d/sipserver
 endef
 
-$(eval $(call BuildPackage,sipserver))
+define Package/postinst
+#!/bin/sh
+chmod 755 /etc/init.d/sipserver
+/etc/init.d/sipserver enable
+/etc/init.d/sipserver start
+endef
 
+$(eval $(call BuildPackage,sipserver))
