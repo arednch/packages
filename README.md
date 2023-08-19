@@ -22,7 +22,9 @@ cp feeds.conf.default feeds.conf
 
 Add the following in `feeds.conf`:
 ```
-src-link aredn <folder where you have the aredn package definitions (this repo)>
+src-git aredn https://github.com/finfinack/aredn-packages.git
+# If you prefer a local copy instead:
+# src-link aredn <folder where you have the aredn package definitions (this repo)>
 ```
 
 Announce the new feed to the build system:
@@ -32,7 +34,7 @@ cd <your openwrt build/src root>
 ./scripts/feeds install -a -p aredn
 ```
 
-Note: When a new package is added to the folder, remember to rerun `./scripts/feeds update aredn` in order to make the build system aware of it.
+Note: When a new package is added, remember to rerun `./scripts/feeds update aredn` in order to make the build system aware of it.
 
 Once this is set up, you should start to see packages from this feed show up in the available package list when running `make menuconfig`.
 
