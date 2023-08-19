@@ -13,9 +13,11 @@ In order to be able to compile/use these definitions, familiarize yourself with 
 
 Once you have a working build setup, you can include the AREDN packages as a feed:
 
+Note: If feeds.conf already exists, you can ignore this step.
+
 ```
 cd <your openwrt build/src root>
-touch feeds.conf
+cp feeds.conf.default feeds.conf
 ```
 
 Add the following in `feeds.conf`:
