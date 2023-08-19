@@ -29,12 +29,12 @@ define Package/sipserver
   CATEGORY:=Network
   SUBMENU:=Telephony
   TITLE:=SIP Server
-  URL:=https://github.com/BarGabriel/SipServer
+  URL:=https://github.com/finfinack/SipServer
   DEPENDS:=+libstdcpp +libpthread
 endef
 
 define Package/sipserver/description
-  A simple SIP server for handling VoIP calls based on sip protocol.
+  A simple SIP server for handling VoIP calls based on SIP protocol.
 endef
 
 define Build/Install
@@ -56,3 +56,4 @@ chmod 755 /etc/init.d/sipserver
 endef
 
 $(eval $(call BuildPackage,sipserver))
+
