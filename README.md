@@ -30,6 +30,8 @@ cd <your openwrt build/src root>
 ./scripts/feeds install -a -p aredn
 ```
 
+Note: When a new package is added to the folder, remember to rerun `./scripts/feeds update aredn` in order to make the build system aware of it.
+
 Once this is set up, you should start to see packages from this feed show up in the available package list when running `make menuconfig`.
 
 Specifically to set up a custom feed, find some more guidance here:
