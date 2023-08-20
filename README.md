@@ -2,7 +2,7 @@
 
 This is a repo to hold AREDN packages (OpenWrt) as a separate package feed. These include primarily Makefiles for custom packages.
 
-## Preparation
+## Building
 
 In order to be able to compile/use these definitions, familiarize yourself with the OpenWrt build environment. Roughly in order:
 
@@ -10,6 +10,12 @@ In order to be able to compile/use these definitions, familiarize yourself with 
 - [Build system setup](https://openwrt.org/docs/guide-developer/toolchain/install-buildsystem)
 - [Build system usage](https://openwrt.org/docs/guide-developer/toolchain/use-buildsystem)
 - [Building a single package](https://openwrt.org/docs/guide-developer/toolchain/single.package)
+
+### Prepare config
+
+This repository also contains suggested starting points for configs to compile the package with. See the `configs` folder. In order to use them, copy the `<architecture>.config` file into your build root directory as `.config`.
+
+### Prepare feeds
 
 Once you have a working build setup, you can include the AREDN packages as a feed:
 
