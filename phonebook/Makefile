@@ -15,6 +15,7 @@ PKG_MIRROR_HASH:=skip
 
 PKG_HASH:=skip
 PKG_BUILD_PARALLEL:=1
+PKG_USE_MIPS16:=0
 
 GO_PKG:=github.com/finfinack/phonebook
 
