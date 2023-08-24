@@ -42,7 +42,7 @@ endef
 define Package/phonebook/install
 	$(INSTALL_DIR) \
 		$(1)/usr/bin/ \
-		$(1)/etc/cron.daily/ \
+		$(1)/etc/cron.hourly/ \
 		$(1)/etc/config/
 
 	$(INSTALL_BIN) $(GO_PKG_BUILD_BIN_DIR)/phonebook $(1)/usr/bin/phonebook
@@ -54,7 +54,7 @@ endef
 
 define Package/postinst
 #!/bin/sh
-/etc/cron.daily/update_phonebook
+/etc/cron.hourly/update_phonebook
 endef
 
 $(eval $(call GoBinPackage,phonebook))
