@@ -10,7 +10,7 @@ PKG_MAINTAINER:=Martin Suess
 PKG_SOURCE_PROTO:=git
 PKG_SOURCE_URL:=https://github.com/finfinack/phonebook.git
 PKG_SOURCE_DATE:=2023-08-24
-PKG_SOURCE_VERSION:=a6e7b924f65f97e4dc2dd1856979a8c89d60ab2b
+PKG_SOURCE_VERSION:=42e2205b05e7ec10b7086373357e7312f3cc0d60
 PKG_MIRROR_HASH:=skip
 
 PKG_HASH:=skip
@@ -49,7 +49,7 @@ define Package/phonebook/install
   
 	$(INSTALL_CONF) ./files/phonebook.config $(1)/etc/config/phonebook
   
-	$(INSTALL_BIN) ./files/update_phonebook.cron $(1)/etc/cron.daily/update_phonebook
+	$(INSTALL_BIN) ./files/update_phonebook.cron $(1)/etc/cron.hourly/update_phonebook
 endef
 
 define Package/postinst
