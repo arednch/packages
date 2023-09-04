@@ -1,0 +1,2 @@
+#!/bin/sh
+wget -O /www/phonebook.csv http://hb9edi-apu-1.local.mesh:8080/filerepo/Phonebook/AREDN_Phonebook.csv
