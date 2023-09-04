@@ -1,2 +1,12 @@
 #!/bin/sh
-wget -O /www/phonebook.csv http://hb9edi-apu-1.local.mesh:8080/filerepo/Phonebook/AREDN_Phonebook.csv
+
+URL="http://hb9edi-apu-1.local.mesh:8080/filerepo/Phonebook/AREDN_Phonebook.csv"
+FILE="/www/phonebook.csv"
+if [ -f "$FILE" ]; then
+  if [[ $(find "$FILE" -mmin +1400 -print) ]]; then
+    curl -o $FILE $URL
+  fi
+else
+  curl -o $FILE $URL
+  /etc/cron.hourly/fetch_phonebook
+fi

@@ -42,7 +42,6 @@ endef
 define Package/phonebook/install
 	$(INSTALL_DIR) \
 		$(1)/usr/bin/ \
-		$(1)/etc/cron.daily/ \
 		$(1)/etc/cron.hourly/ \
 		$(1)/etc/config/
 
@@ -50,13 +49,13 @@ define Package/phonebook/install
   
 	$(INSTALL_CONF) ./files/phonebook.config $(1)/etc/config/phonebook
   
-	$(INSTALL_BIN) ./files/fetch_phonebook.cron $(1)/etc/cron.daily/fetch_phonebook
+	$(INSTALL_BIN) ./files/fetch_phonebook.cron $(1)/etc/cron.hourly/fetch_phonebook
 	$(INSTALL_BIN) ./files/update_phonebook.cron $(1)/etc/cron.hourly/update_phonebook
 endef
 
 define Package/postinst
 #!/bin/sh
-/etc/cron.daily/fetch_phonebook
+/etc/cron.hourly/fetch_phonebook
 /etc/cron.hourly/update_phonebook
 endef
 
