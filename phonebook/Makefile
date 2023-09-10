@@ -8,16 +8,16 @@ PKG_LICENSE_FILES:=LICENSE
 PKG_MAINTAINER:=Martin Suess
 
 PKG_SOURCE_PROTO:=git
-PKG_SOURCE_URL:=https://github.com/finfinack/phonebook.git
-PKG_SOURCE_DATE:=2023-09-04
-PKG_SOURCE_VERSION:=26594ecf4743b2299e680ceca912f153cd5b8f22
+PKG_SOURCE_URL:=https://github.com/arednch/phonebook.git
+PKG_SOURCE_DATE:=2023-09-10
+PKG_SOURCE_VERSION:=674191773c1d08e417b61385e7da5aea531bed50
 PKG_MIRROR_HASH:=skip
 
 PKG_HASH:=skip
 PKG_BUILD_PARALLEL:=1
 PKG_USE_MIPS16:=0
 
-GO_PKG:=github.com/finfinack/phonebook
+GO_PKG:=github.com/arednch/phonebook
 
 include $(INCLUDE_DIR)/package.mk
 include $(TOPDIR)/feeds/packages/lang/golang/golang-package.mk
@@ -27,7 +27,7 @@ define Package/phonebook
   CATEGORY:=Network
   SUBMENU:=Telephony
   TITLE:=Phonebook
-  URL:=https://github.com/finfinack/phonebook
+  URL:=https://github.com/arednch/phonebook
   DEPENDS:=$(GO_ARCH_DEPENDS) +ca-bundle
 endef
 

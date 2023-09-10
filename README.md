@@ -28,7 +28,7 @@ cp feeds.conf.default feeds.conf
 
 Add the following in `feeds.conf`:
 ```
-src-git aredn https://github.com/finfinack/aredn-packages.git
+src-git aredn https://github.com/arednch/packages.git
 # If you prefer a local copy instead:
 # src-link aredn <folder where you have the aredn package definitions (this repo)>
 ```

@@ -11,8 +11,8 @@ PKG_NAME:=sipserver
 PKG_RELEASE:=$(AUTORELEASE)
 
 PKG_SOURCE_PROTO:=git
-PKG_SOURCE_URL:=https://github.com/finfinack/SipServer.git
-PKG_SOURCE_DATE:=2023-08-18
+PKG_SOURCE_URL:=https://github.com/arednch/sipserver.git
+PKG_SOURCE_DATE:=2023-09-10
 PKG_SOURCE_VERSION:=144b7e414926d1ed1ec5156795cef51cedd6f200
 PKG_MIRROR_HASH:=skip
 
@@ -29,7 +29,7 @@ define Package/sipserver
   CATEGORY:=Network
   SUBMENU:=Telephony
   TITLE:=SIP Server
-  URL:=https://github.com/finfinack/SipServer
+  URL:=https://github.com/arednch/sipserver
   DEPENDS:=+libstdcpp +libpthread
 endef
 
