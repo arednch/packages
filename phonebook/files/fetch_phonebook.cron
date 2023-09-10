@@ -4,9 +4,9 @@ URL="http://hb9edi-vm-gw.local.mesh/filerepo/Phonebook/AREDN_Phonebook.csv"
 FILE="/www/phonebook.csv"
 if [ -f "$FILE" ]; then
   if [[ $(find "$FILE" -mmin +1400 -print) ]]; then
-    curl -o $FILE $URL
+    curl -o "$FILE" "$URL"
   fi
 else
-  curl -o $FILE $URL
+  curl -o "$FILE" "$URL"
   /etc/cron.hourly/update_phonebook
 fi
