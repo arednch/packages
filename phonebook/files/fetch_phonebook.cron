@@ -8,5 +8,5 @@ if [ -f "$FILE" ]; then
   fi
 else
   curl -o $FILE $URL
-  /etc/cron.hourly/fetch_phonebook
+  /etc/cron.hourly/update_phonebook
 fi
