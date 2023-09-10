@@ -8,6 +8,7 @@
 include $(TOPDIR)/rules.mk
 
 PKG_NAME:=sipserver
+PKG_VERSION:=1.0.0
 PKG_RELEASE:=$(AUTORELEASE)
 
 PKG_SOURCE_PROTO:=git
