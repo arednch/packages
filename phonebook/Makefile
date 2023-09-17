@@ -56,6 +56,7 @@ endef
 
 define Package/postinst
 #!/bin/sh
+mkdir -p /www/arednstack
 /etc/cron.hourly/fetch_phonebook
 /etc/cron.hourly/update_phonebook
 endef

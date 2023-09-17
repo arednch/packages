@@ -1,7 +1,7 @@
 #!/bin/sh
 
 URL="http://hb9edi-vm-gw.local.mesh/filerepo/Phonebook/AREDN_Phonebook.csv"
-FILE="/www/phonebook.csv"
+FILE="/www/arednstack/phonebook.csv"
 if [ -f "$FILE" ]; then
   if [[ $(find "$FILE" -mmin +1400 -print) ]]; then
     curl -o "$FILE" "$URL"
