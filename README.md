@@ -58,3 +58,12 @@ The stable download links for the latest release for each architecture:
 - [ARM Cortex A7, ipq40xx (e.g. hAP AC3)](https://github.com/arednch/packages/releases/latest/download/arm_cortex-a7_neon-vfpv4.zip)
 - [MIPS 24kc, ath79 (e.g. hAP AC Lite)](https://github.com/arednch/packages/releases/latest/download/mips_24kc.zip)
 - [x86_64](https://github.com/arednch/packages/releases/latest/download/x86_64.zip)
+
+### Compatibility
+
+The releases are usually tested with the latest (stable) version of [AREDN firmware](https://www.arednmesh.org/content/current-software). Notably, the software packages are currently built and tested in particular for the following:
+
+- MikroTik hAP AC3 (`ipq40xx`, `arm_cortex-a7_neon-vfpv4`)
+- MikroTik hAP AC Lite (`ath79`, `mips_24kc`)
+
+Note: While we believe these packages _should_ run on most other AREDN firmware versions and likely for many other platforms using the same chipset, we are _not_ testing these explicitly.
