@@ -46,3 +46,15 @@ Once this is set up, you should start to see packages from this feed show up in 
 
 Specifically to set up a custom feed, find some more guidance here:
 https://openwrt.org/docs/guide-developer/helloworld/chapter4
+
+## Releases
+
+Releases are created for the packages defined / built in this repo: https://github.com/arednch/packages/releases
+
+The following always points to the latest release: https://github.com/arednch/packages/releases/latest
+
+The stable download links for the latest release for each architecture:
+
+- [ARM Cortex A7, ipq40xx (e.g. hAP AC3)](https://github.com/arednch/packages/releases/latest/download/arm_cortex-a7_neon-vfpv4.zip)
+- [MIPS 24kc, ath79 (e.g. hAP AC Lite)](https://github.com/arednch/packages/releases/latest/download/mips_24kc.zip)
+- [x86_64](https://github.com/arednch/packages/releases/latest/download/x86_64.zip)
