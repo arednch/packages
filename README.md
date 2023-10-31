@@ -2,6 +2,27 @@
 
 This is a repo to hold AREDN packages (OpenWrt) as a separate package feed. These include primarily Makefiles for custom packages.
 
+## Packages
+
+The following packages are currently supported:
+
+- [phonebook](https://github.com/arednch/packages/tree/main/phonebook): A phonebook service running on the AREDN Node fetching
+  a CSV from an upstream server and converting into XML phonebooks which can be fetched by phones.
+  See the referenced [repository](https://github.com/arednch/phonebook) for more details including supported flags / configuration options.
+
+- [sipserver](https://github.com/arednch/packages/tree/main/sipserver): A (very) simple SIP server allowing local registration.
+  Note that the [code](https://github.com/arednch/sipserver) is mostly a copy of
+  [SipServer](https://github.com/BarGabriel/SipServer) apart from a fix to make it run as a daemon.
+
+Each package is defined in a separate folder and aligned with OpenWrt's build system and file locations. See the [OpenWrt documentation](https://openwrt.org/docs/start) for more details, but on a high level, this includes:
+
+- A `Makefile` which contains all the instructions to fetch the source code, build the binary and install it on the target system including (optionally) copying cron files and configuration if needed.
+
+- (Optional) A `files` directory with default files such as configurations and cron templates which are copied to the target system upon installation (based on instructions in the `Makefile`).
+
+  * `cron` jobs are typically defined as files in `/etc/cron.hourly` and `/etc/cron.daily` (there are other options but they tend to be more convoluted).
+  * config files are set up in `/etc/config/` for the packages in this repository.
+
 ## Building
 
 In order to be able to compile/use these definitions, familiarize yourself with the OpenWrt build environment. Roughly in order:
