@@ -7,6 +7,7 @@ make toolchain/compile
 make package/phonebook/compile V=99
 make package/sipserver/compile V=99
 # Package AC3
+rm -rf /tmp/arm_cortex-a7_neon-vfpv4
 mkdir /tmp/arm_cortex-a7_neon-vfpv4
 cp bin/packages/arm_cortex-a7_neon-vfpv4/aredn/phonebook_* /tmp/arm_cortex-a7_neon-vfpv4
 cp bin/packages/arm_cortex-a7_neon-vfpv4/aredn/sipserver_* /tmp/arm_cortex-a7_neon-vfpv4
@@ -22,6 +23,7 @@ make toolchain/compile
 make package/phonebook/compile V=99
 make package/sipserver/compile V=99
 # Package x86
+rm -rf /tmp/x86_64
 mkdir /tmp/x86_64
 cp bin/packages/x86_64/aredn/phonebook_* /tmp/x86_64
 cp bin/packages/x86_64/aredn/sipserver_* /tmp/x86_64
@@ -37,6 +39,7 @@ make toolchain/compile
 make package/phonebook/compile V=99
 make package/sipserver/compile V=99
 # Build AC Lite
+rm -rf /tmp/mips_24kc
 mkdir /tmp/mips_24kc
 cp bin/packages/mips_24kc/aredn/phonebook_* /tmp/mips_24kc
 cp bin/packages/mips_24kc/aredn/sipserver_* /tmp/mips_24kc
