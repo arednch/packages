@@ -2,12 +2,22 @@
 
 URL="http://hb9edi-vm-gw.local.mesh/filerepo/Phonebook/AREDN_Phonebook.csv"
 FILE="/www/arednstack/phonebook.csv"
+
 mkdir -p /www/arednstack
 if [ -f "$FILE" ]; then
   if [[ $(find "$FILE" -mmin +1400 -print) ]]; then
+    echo "Updating phonebook source (>24hrs old)."
     curl -o "$FILE" "$URL"
+    /etc/cron.hourly/update_phonebook
+  elif [[ "$FORCE_UPDATE" == "TRUE" ]]; then
+    echo "Updating phonebook source (forced)."
+    curl -o "$FILE" "$URL"
+    /etc/cron.hourly/update_phonebook
+  else
+    echo "Not updating phonebook source (<24hrs old)."
   fi
 else
+  echo "Updating phonebook source (doesn't exist yet locally)."
   curl -o "$FILE" "$URL"
   /etc/cron.hourly/update_phonebook
 fi
