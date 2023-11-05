@@ -40,6 +40,15 @@ define Build/Install
 	#
 endef
 
+define Package/preinst
+#!/bin/sh
+if [ ! -f '/etc/httpd.conf' ] || [ "$(grep -c phonebook.sh /etc/httpd.conf)" = "0" ]; then
+	echo '/cgi-bin/phonebook.sh:root:$p$root' >>/etc/httpd.conf
+fi
+/etc/init.d/uhttpd reload
+exit 0
+endef
+
 define Package/phonebook/install
 	$(INSTALL_DIR) \
 		$(1)/usr/bin/ \
@@ -61,6 +70,7 @@ define Package/postinst
 #!/bin/sh
 mkdir -p /www/arednstack
 /etc/cron.hourly/fetch_phonebook
+exit 0
 endef
 
 $(eval $(call GoBinPackage,phonebook))
