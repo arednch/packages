@@ -8,7 +8,9 @@ The following packages are currently supported:
 
 - [phonebook](https://github.com/arednch/packages/tree/main/phonebook): A phonebook service running on the AREDN Node fetching
   a CSV from an upstream server and converting into XML phonebooks which can be fetched by phones.
-  See the referenced [repository](https://github.com/arednch/phonebook) for more details including supported flags / configuration options.
+  
+    * See the [package folder](phonebook/) for AREDN package specific options (i.e. where the configuration file resides).
+    * See the [repository](https://github.com/arednch/phonebook) for more details including supported flags / configuration options.
 
 - [sipserver](https://github.com/arednch/packages/tree/main/sipserver): A (very) simple SIP server allowing local registration.
   Note that the [code](https://github.com/arednch/sipserver) is mostly a copy of
