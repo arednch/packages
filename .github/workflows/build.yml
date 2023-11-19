@@ -26,9 +26,9 @@ jobs:
     strategy:
       matrix:
         arch:
-          - x86_64
+          # - x86_64
           - mips_24kc
-          - arm_cortex-a7_neon-vfpv4
+          # - arm_cortex-a7_neon-vfpv4
 
     steps:
       - uses: actions/checkout@v4
