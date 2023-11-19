@@ -1,0 +1,31 @@
+name: Build
+
+on:
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  build:
+    name: ${{ matrix.arch }} build
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        arch:
+          - x86_64
+          - mips_24kc
+          - arm_cortex-a7_neon-vfpv4
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Build
+        uses: openwrt/gh-action-sdk@main
+        env:
+          ARCH: ${{ matrix.arch }}
+
+      - name: Store packages
+        uses: actions/upload-artifact@v3
+        with:
+          name: ${{ matrix.arch}}-packages
+          path: bin/packages/${{ matrix.arch }}/*.ipk
