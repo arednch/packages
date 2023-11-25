@@ -34,7 +34,8 @@ jobs:
           - arm_cortex-a7_neon-vfpv4
 
     steps:
-      - uses: actions/checkout@v4
+      - name: Checkout
+        uses: actions/checkout@v4
 
       - name: Build
         uses: openwrt/gh-action-sdk@main
@@ -53,4 +54,14 @@ jobs:
         uses: actions/upload-artifact@v3
         with:
           name: ${{ matrix.arch}}-packages
-          path: "*.ipk"
+          path: |
+            *.ipk
+
+      - name: Release
+        uses: softprops/action-gh-release@v1
+        if: startsWith(github.ref, 'refs/tags/')
+        with:
+          prerelease: true
+          draft: true
+          files: |
+            *.ipk
