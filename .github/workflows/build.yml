@@ -1,12 +1,6 @@
 name: Build
 
 on:
-  # push:
-  #   paths:
-  #     - '**/Makefile'
-  # pull_request:
-  #   branches:
-  #     - main
   workflow_dispatch:
     inputs:
       logLevel:
@@ -21,14 +15,14 @@ on:
 
 jobs:
   build:
-    name: ${{ matrix.arch }} build
+    name: Build ${{ matrix.arch }} ${{ github.ref }}
     runs-on: ubuntu-latest
     strategy:
       matrix:
         arch:
-          # - x86_64
+          - x86_64
           - mips_24kc
-          # - arm_cortex-a7_neon-vfpv4
+          - arm_cortex-a7_neon-vfpv4
 
     steps:
       - uses: actions/checkout@v4
