@@ -1,6 +1,11 @@
 name: Build
 
 on:
+  release:
+    types: [published]
+  push:
+    tags:
+    - 'v*'
   workflow_dispatch:
     inputs:
       logLevel:
@@ -31,15 +36,16 @@ jobs:
         uses: openwrt/gh-action-sdk@main
         env:
           ARCH: ${{ matrix.arch }}
+          FEEDNAME: aredn
           PACKAGES: phonebook sipserver
           V: sc
 
       - name: Move created packages to project dir
         run: |
-          cp bin/packages/${{ matrix.arch }}/action/*.ipk . || true
+          cp bin/packages/${{ matrix.arch }}/aredn/*.ipk . || true
           cp bin/targets/*/*/packages/libstdcpp6*.ipk . || true
 
-      - name: Store packages
+      - name: Upload artifacts
         uses: actions/upload-artifact@v3
         with:
           name: ${{ matrix.arch}}-packages
