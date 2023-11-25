@@ -9,7 +9,7 @@ The following packages are currently supported:
 - [phonebook](https://github.com/arednch/packages/tree/main/phonebook): A phonebook service running on the AREDN Node fetching
   a CSV from an upstream server and converting into XML phonebooks which can be fetched by phones.
   
-    * See the [package folder](phonebook/) for AREDN package specific options (i.e. where the configuration file resides).
+    * See the [package folder](https://github.com/arednch/packages/tree/main/phonebook) for AREDN package specific options (i.e. where the configuration file resides).
     * See the [repository](https://github.com/arednch/phonebook) for more details including supported flags / configuration options.
 
 - [sipserver](https://github.com/arednch/packages/tree/main/sipserver): A (very) simple SIP server allowing local registration.
@@ -37,6 +37,14 @@ In order to be able to compile/use these definitions, familiarize yourself with 
 ### Prepare config
 
 This repository also contains suggested starting points for configs to compile the package with. See the `configs` folder. In order to use them, copy the `<architecture>.config` file into your build root directory as `.config`.
+
+Important manual changes to the configs (via `make menuconfig` or directly in the `.config` file):
+
+- `Global build settings` > `Cryptographically signed package lists`: `off`
+- `Languages` > `Go` > `Configuration` > `External bootstrap Go root directory`: `/usr/bin` (set to whatever your `go` binary is in)
+- `Base system` > `libstdcpp`: `M`
+- `Network` > `Telephony` > `phonebook`: `M`
+- `Network` > `Telephony` > `sipserver`: `M`
 
 ### Prepare feeds
 
