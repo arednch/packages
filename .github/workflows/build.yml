@@ -37,6 +37,7 @@ jobs:
         uses: openwrt/gh-action-sdk@main
         env:
           ARCH: ${{ matrix.arch }}
+          PACKAGES: phonebook sipserver
           V: sc
 
       - name: Store packages
