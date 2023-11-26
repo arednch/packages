@@ -27,6 +27,24 @@ Each package is defined in a separate folder and aligned with OpenWrt's build sy
 
 ## Building
 
+### Automated Builds
+
+While the [Local Builds](#local-builds) section should provide enough guidance and pointers to allow building the packages locally for debugging purposes, the release builds should mostly be built by [GitHub Actions](https://github.com/features/actions) going forward.
+
+Automated builds are currently configured as follows:
+
+- The creation of a new [release](https://github.com/arednch/packages/releases) acts as the trigger (this may be adjusted as we see fit).
+- Additionally, new builds can be [manually triggered](https://github.com/arednch/packages/actions/workflows/build.yml).
+- The actual build runs against one or more architectures (currently `x86_64`, `mips_24kc` and `arm_cortex-a7_neon-vfpv4` but may be subject to change) in order to support the platforms we need (see [Compatibility](#compatibility) above).
+
+  * The build runs using the [OpenWRT GitHub Action](https://github.com/openwrt/gh-action-sdk) which builds packages using official OpenWrt SDK Docker containers.
+  * The created packages are then uploaded as artifacts to the build (primarily for debugging purposes at this point).
+  * More importantly, if the build was triggered by a release, the packages are also wrapped into a ZIP archive and added to the release.
+
+See the build definitions in [`build.yml`](https://github.com/arednch/packages/blob/main/.github/workflows/build.yml) for more details.
+
+### Local Builds
+
 In order to be able to compile/use these definitions, familiarize yourself with the OpenWrt build environment. Roughly in order:
 
 - [Build system essentials](https://openwrt.org/docs/guide-developer/toolchain/buildsystem_essentials)
@@ -34,7 +52,7 @@ In order to be able to compile/use these definitions, familiarize yourself with 
 - [Build system usage](https://openwrt.org/docs/guide-developer/toolchain/use-buildsystem)
 - [Building a single package](https://openwrt.org/docs/guide-developer/toolchain/single.package)
 
-### Prepare config
+#### Prepare config
 
 This repository also contains suggested starting points for configs to compile the package with. See the `configs` folder. In order to use them, copy the `<architecture>.config` file into your build root directory as `.config`.
 
@@ -46,7 +64,7 @@ Important manual changes to the configs (via `make menuconfig` or directly in th
 - `Network` > `Telephony` > `phonebook`: `M`
 - `Network` > `Telephony` > `sipserver`: `M`
 
-### Prepare feeds
+#### Prepare feeds
 
 Once you have a working build setup, you can include the AREDN packages as a feed:
 
@@ -89,6 +107,8 @@ The stable download links for the latest release for each architecture:
 - [ARM Cortex A7, ipq40xx (e.g. hAP AC3)](https://github.com/arednch/packages/releases/latest/download/arm_cortex-a7_neon-vfpv4.zip)
 - [MIPS 24kc, ath79 (e.g. hAP AC Lite)](https://github.com/arednch/packages/releases/latest/download/mips_24kc.zip)
 - [x86_64](https://github.com/arednch/packages/releases/latest/download/x86_64.zip)
+
+Note: Also read the [Automated Builds](#automated-builds) section as it provides the artifacts for these releases.
 
 ### Compatibility
 
