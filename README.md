@@ -35,7 +35,7 @@ Automated builds are currently configured as follows:
 
 - The creation of a new [release](https://github.com/arednch/packages/releases) acts as the trigger (this may be adjusted as we see fit).
 - Additionally, new builds can be [manually triggered](https://github.com/arednch/packages/actions/workflows/build.yml).
-- The actual build runs against one or more architectures (currently `x86_64`, `mips_24kc` and `arm_cortex-a7_neon-vfpv4` but may be subject to change) in order to support the platforms we need (see [Compatibility](#compatibility) above).
+- The actual build runs against one or more architectures (currently `x86_64`, `mips_24kc` and `arm_cortex-a7_neon-vfpv4` but may be subject to change) in order to support the platforms we need (see [Compatibility](#compatibility)).
 
   * The build runs using the [OpenWRT GitHub Action](https://github.com/openwrt/gh-action-sdk) which builds packages using official OpenWrt SDK Docker containers.
   * The created packages are then uploaded as artifacts to the build (primarily for debugging purposes at this point).
