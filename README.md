@@ -61,6 +61,9 @@ This repository also contains suggested starting points for configs to compile t
 
 Important manual changes to the configs (via `make menuconfig` or directly in the `.config` file):
 
+- `Target System`: Pick the platform you want to compile for. If you're unsure, see [Supported Devices](http://downloads.arednmesh.org/firmware/html/SUPPORTED_DEVICES.md) for more info.
+- `Subtarget`: Pick the platform you want to compile for. If you're unsure, see [Supported Devices](http://downloads.arednmesh.org/firmware/html/SUPPORTED_DEVICES.md) for more info.
+- `Target Profile`: Pick the platform you want to compile for. If you're unsure, see [Supported Devices](http://downloads.arednmesh.org/firmware/html/SUPPORTED_DEVICES.md) for more info.
 - `Global build settings` > `Cryptographically signed package lists`: `off`
 - `Languages` > `Go` > `Configuration` > `External bootstrap Go root directory`: `/usr/bin` (set to whatever your `go` binary is in)
 - `Base system` > `libstdcpp`: `M`
