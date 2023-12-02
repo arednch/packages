@@ -125,10 +125,10 @@ More specifically, an end-to-end path for Ubuntu 22.04:
   ​make package/phonebook/compile
   ```
 
-  Run it with the `V=Sc` option to get much more detailed debugging output:
+  Run it with the `V=sc` option to get much more detailed debugging output:
 
   ```
-  ​make package/phonebook/compile V=Sc
+  ​make package/phonebook/compile V=sc
   ```
 
 - Find the compiled packages
