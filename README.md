@@ -48,6 +48,9 @@ See the build definitions in [`build.yml`](https://github.com/arednch/packages/b
 In order to be able to compile/use these definitions, familiarize yourself with the OpenWrt build environment. Roughly in order:
 
 - [Build system essentials](https://openwrt.org/docs/guide-developer/toolchain/buildsystem_essentials)
+
+  * Note: The `phonebook` package will also require `golang` which is not part of the suggested buildsystem essentials. Hence, also run `sudo install golang` to add it.
+
 - [Build system setup](https://openwrt.org/docs/guide-developer/toolchain/install-buildsystem)
 - [Build system usage](https://openwrt.org/docs/guide-developer/toolchain/use-buildsystem)
 - [Building a single package](https://openwrt.org/docs/guide-developer/toolchain/single.package)
