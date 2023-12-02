@@ -49,11 +49,93 @@ In order to be able to compile/use these definitions, familiarize yourself with 
 
 - [Build system essentials](https://openwrt.org/docs/guide-developer/toolchain/buildsystem_essentials)
 
-  * Note: The `phonebook` package will also require `golang` which is not part of the suggested buildsystem essentials. Hence, also run `sudo install golang` to add it.
+  * Note: The `phonebook` package will also require `golang` which is not part of the suggested build system essentials. Hence, also run `sudo install golang` to add it.
 
 - [Build system setup](https://openwrt.org/docs/guide-developer/toolchain/install-buildsystem)
 - [Build system usage](https://openwrt.org/docs/guide-developer/toolchain/use-buildsystem)
 - [Building a single package](https://openwrt.org/docs/guide-developer/toolchain/single.package)
+
+More specifically, an end-to-end path for Ubuntu 22.04:
+
+**Disclaimer**: _This will quickly be outdated, so no guarantee that this still works when you run it._
+
+- Install the required [build system essentials](https://openwrt.org/docs/guide-developer/toolchain/install-buildsystem#debianubuntu)
+
+- Install golang as another build system requirement (for the `phonebook` in particular). Also include `vim` and `screen` (optional).
+
+  ```
+  sudo apt install golang vim screen
+  ```
+
+- [Get the OpenWRT source](https://openwrt.org/docs/guide-developer/toolchain/use-buildsystem#build_system_usage)
+
+  ```
+  git clone https://git.openwrt.org/openwrt/openwrt.git
+  cd openwrt
+  git tag
+  git checkout v22.03.5
+  ```
+
+  Note: After running `git tag`, pick the version which AREDN is currently compiled against. This can be found in the [AREDN source code](https://github.com/aredn/aredn/blob/main/openwrt.mk).
+
+- [Add the AREDNCH feed](#prepare-feeds)
+
+  Add the git source for our AREDN packages feed:
+
+  ```
+  cp feeds.conf.default feeds.conf
+  echo 'src-git aredn https://github.com/arednch/packages.git' >> feeds.conf
+  ```
+
+  Alternatively to the above: In case you want to make local changes to the AREDN CH package definitions, clone them locally and point to them in the feed config:
+
+  ```
+  cd ..
+  git clone https://github.com/arednch/packages.git arednch
+  cd openwrt
+  cp feeds.conf.default feeds.conf
+  echo 'src-link aredn <insert the absolute path to the arednch cloned repo above>' >> feeds.conf
+  ```
+
+- [Prepare and install feeds](https://openwrt.org/docs/guide-developer/toolchain/use-buildsystem#build_system_usage)
+
+  ```
+  ./scripts/feeds update -a
+  ./scripts/feeds install -a
+  ```
+
+- [Prepare configuration](https://github.com/arednch/packages#prepare-config)
+
+  Run `make menuconfig` and follow the [instructions linked to](https://github.com/arednch/packages#prepare-config).
+
+- [Compile the toolchain](https://openwrt.org/docs/guide-developer/toolchain/single.package) (required at least once per architecture)
+
+  Note: Both the following steps will likely take a while to complete.
+
+  ```
+  make tools/install
+  make toolchain/install
+  ```
+
+- [Compile a package](https://openwrt.org/docs/guide-developer/toolchain/single.package)
+
+  This is the example for `phonebook` but other packages like `sipserver` as well as standard OpenWRT packages can be compiled this way.
+
+  ```
+  ​make package/phonebook/compile
+  ```
+
+  Run it with the `V=Sc` option to get much more detailed debugging output:
+
+  ```
+  ​make package/phonebook/compile V=Sc
+  ```
+
+- Find the compiled packages
+
+  * The AREDN CH packages can be found here: `find ./bin/packages -name *.ipk`
+
+  * Standard packages like `libstdcpp` which is a required dependency for `sipserver` can be found here: `find ./bin/targets -name *.ipk`
 
 #### Prepare config
 
