@@ -1,2 +1,2 @@
 #!/bin/sh
-/usr/bin/phonebook --conf=/etc/config/phonebook
+/usr/bin/phonebook --conf=/etc/config/phonebook_cron
