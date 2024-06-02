@@ -1,7 +1,7 @@
 include $(TOPDIR)/rules.mk
 
 PKG_NAME:=phonebook
-PKG_VERSION:=1.4.4
+PKG_VERSION:=1.5
 PKG_RELEASE:=$(AUTORELEASE)
 
 PKG_LICENSE:=Apache-2.0
@@ -11,7 +11,7 @@ PKG_MAINTAINER:=Martin Suess
 PKG_SOURCE_PROTO:=git
 PKG_SOURCE_URL:=https://github.com/arednch/phonebook.git
 PKG_SOURCE_DATE:=2024-06-02
-PKG_SOURCE_VERSION:=a25bef5522d3ed6a8b24605cbdf07e8bb8a20d40
+PKG_SOURCE_VERSION:=88885de1b2c545ab7cc420354fe83a22b5719b9c
 PKG_MIRROR_HASH:=d98e48d22ac322580279509956a03482a495113df7ccfa538cddfd57bdc1dec1
 
 PKG_BUILD_DEPENDS:=golang/host
@@ -59,10 +59,9 @@ define Package/phonebook/install
 		$(1)/www/cgi-bin/
 
 	$(INSTALL_BIN) $(GO_PKG_BUILD_BIN_DIR)/phonebook $(1)/usr/bin/phonebook
-  
-	$(INSTALL_CONF) ./files/phonebook_cron.config $(1)/etc/config/phonebook_cron
-	$(INSTALL_CONF) ./files/phonebook_svc.config $(1)/etc/config/phonebook_svc
-  
+ 
+	$(INSTALL_CONF) ./files/phonebook.config $(1)/etc/config/phonebook
+ 
 	$(INSTALL_BIN) ./files/phonebook.init $(1)/etc/init.d/phonebook
 	$(INSTALL_BIN) ./files/fetch_phonebook.cron $(1)/etc/cron.hourly/fetch_phonebook
 	$(INSTALL_BIN) ./files/update_phonebook.cron $(1)/etc/cron.hourly/update_phonebook
