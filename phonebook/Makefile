@@ -51,21 +51,19 @@ exit 0
 endef
 
 define Package/phonebook/install
-	$(INSTALL_DIR) \
-		$(1)/usr/bin/ \
-		$(1)/etc/init.d/ \
-		$(1)/etc/cron.hourly/ \
-		$(1)/etc/config/ \
-		$(1)/www/cgi-bin/
-
+	$(INSTALL_DIR) $(1)/usr/bin
 	$(INSTALL_BIN) $(GO_PKG_BUILD_BIN_DIR)/phonebook $(1)/usr/bin/phonebook
  
+  $(INSTALL_DIR) $(1)/etc/config
 	$(INSTALL_CONF) ./files/phonebook.config $(1)/etc/config/phonebook
  
+	$(INSTALL_DIR) $(1)/etc/init.d
 	$(INSTALL_BIN) ./files/phonebook.init $(1)/etc/init.d/phonebook
+	$(INSTALL_DIR) $(1)/etc/cron.hourly
 	$(INSTALL_BIN) ./files/fetch_phonebook.cron $(1)/etc/cron.hourly/fetch_phonebook
 	$(INSTALL_BIN) ./files/update_phonebook.cron $(1)/etc/cron.hourly/update_phonebook
 
+  $(INSTALL_DIR) $(1)/www/cgi-bin
 	$(INSTALL_BIN) ./files/phonebook.sh $(1)/www/cgi-bin/phonebook.sh
 endef
 
