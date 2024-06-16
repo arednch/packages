@@ -1,2 +1,2 @@
 #!/bin/sh
-/usr/bin/phonebook --conf=/etc/config --server=false
+/usr/bin/phonebook --conf=/etc/phonebook.conf --server=false
