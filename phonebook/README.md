@@ -14,7 +14,7 @@ For release notes, see the [release page](https://github.com/arednch/packages/re
 
 - `Makefile`: Standard OpenWRT makefile defining how the package is built and installed. See this file if you are unsure where files are copied to during installation.
 
-- `phonebook.config`: This is the configuration file for the phonebook and is copied to `/etc/config/phonebook` during the installation. This is where you can update flags (check the [phonebook repository](https://github.com/arednch/phonebook) for the possible settings) in order to change its behavior.
+- `phonebook.config`: This is the configuration file for the phonebook and is copied to `/etc/phonebook.conf` during the installation. This is where you can update flags (check the [phonebook repository](https://github.com/arednch/phonebook) for the possible settings) in order to change its behavior.
 
 - `fetch_phonebook.cron`: This is the shell script that gets started hourly (copied to `/etc/cron.hourly/fetch_phonebook`) and fetches the CSV every hour until it exists or every 24hrs afterwards.
 
