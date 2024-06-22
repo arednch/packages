@@ -7,6 +7,9 @@ The source code is held in a separate repository and documents flags, config fil
 
 This documentation file here only documents the specifics of how phonebook is bundled for AREDN / OpenWRT.
 
+For release notes, see the [release page](https://github.com/arednch/packages/releases) or
+[this document](https://docs.google.com/document/d/18D14Ch3GjUZmSRQALEKslvtEJ0O76pZkV3VNJ6vsB14/edit).
+
 ## Package Content
 
 - `Makefile`: Standard OpenWRT makefile defining how the package is built and installed. See this file if you are unsure where files are copied to during installation.
