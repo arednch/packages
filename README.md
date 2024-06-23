@@ -6,8 +6,7 @@ This is a repo to hold AREDN packages (OpenWrt) as a separate package feed. Thes
 
 The following packages are currently supported:
 
-- [phonebook](https://github.com/arednch/packages/tree/main/phonebook): A phonebook service running on the AREDN Node fetching
-  a CSV from an upstream server and converting into XML phonebooks which can be fetched by phones.
+- [phonebook](https://github.com/arednch/packages/tree/main/phonebook): A phonebook service running on the AREDN Node fetching a CSV from an upstream server and converting into XML phonebooks which can be fetched by phones.
   
     * See the [package folder](https://github.com/arednch/packages/tree/main/phonebook) for AREDN package specific options (i.e. where the configuration file resides).
     * See the [repository](https://github.com/arednch/phonebook) for more details including supported flags / configuration options.
@@ -23,7 +22,7 @@ Each package is defined in a separate folder and aligned with OpenWrt's build sy
 - (Optional) A `files` directory with default files such as configurations and cron templates which are copied to the target system upon installation (based on instructions in the `Makefile`).
 
   * `cron` jobs are typically defined as files in `/etc/cron.hourly` and `/etc/cron.daily` (there are other options but they tend to be more convoluted).
-  * config files are set up in `/etc/config/` for the packages in this repository.
+  * config files are set up in `/etc/` for the packages in this repository.
 
 ## Building
 

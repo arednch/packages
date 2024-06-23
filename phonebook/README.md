@@ -3,7 +3,7 @@
 The Phonebook package bundles a phonebook service running on the AREDN Node fetching
 a CSV from an upstream server and converting into XML phonebooks which can be fetched by phones.
 
-The source code is held in a separate repository and documents flags, config file format, etc: https://github.com/arednch/phonebook
+By now it has grown much beyond that though. For more details, see the source repository which includes an extensive documentation for flags, config file format, etc: https://github.com/arednch/phonebook
 
 This documentation file here only documents the specifics of how phonebook is bundled for AREDN / OpenWRT.
 
