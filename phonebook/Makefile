@@ -19,6 +19,10 @@ PKG_BUILD_PARALLEL:=1
 PKG_BUILD_FLAGS:=no-mips16
 PKG_USE_MIPS16:=0
 
+GO_PKG_GCFLAGS:=-l -B
+GO_PKG_LDFLAGS:=-s -w
+GO_PKG_LDFLAGS_X:=main.VERSION=v$(PKG_VERSION)
+
 GO_PKG:=github.com/arednch/phonebook
 
 include $(INCLUDE_DIR)/package.mk
