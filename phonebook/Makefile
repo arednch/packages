@@ -12,7 +12,6 @@ PKG_SOURCE_PROTO:=git
 PKG_SOURCE_URL:=https://github.com/arednch/phonebook.git
 PKG_SOURCE_DATE:=2024-06-30
 PKG_SOURCE_VERSION:=d87383c9bd8dfac8e9ae83e36db3fb9e6aec2950
-PKG_MIRROR_HASH:=skip
 
 PKG_BUILD_DEPENDS:=golang/host
 PKG_BUILD_PARALLEL:=1
