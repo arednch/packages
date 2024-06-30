@@ -40,13 +40,15 @@ jobs:
         env:
           ARCH: ${{ matrix.arch }}
           FEEDNAME: aredn
-          PACKAGES: phonebook sipserver
+          # No longer build sipserver as it is included in phonebook
+          PACKAGES: phonebook # sipserver
           V: sc
 
       - name: Move created packages to project dir
         run: |
           cp bin/packages/${{ matrix.arch }}/aredn/*.ipk . || true
-          cp bin/targets/*/*/packages/libstdcpp6*.ipk . || true
+        # No longer build/include libstdcpp6 as it is included in phonebook 
+        # cp bin/targets/*/*/packages/libstdcpp6*.ipk . || true
 
       - name: Upload artifacts
         uses: actions/upload-artifact@v3
