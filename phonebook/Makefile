@@ -43,9 +43,11 @@ endef
 
 define Build/Compile
 	$(call GoPackage/Build/Compile)
+ifeq (, $(shell which upx))
 	# Use UPX to shrink the binary size when available.
-	# When not available will fail and continue with the binary as-is.
+	# When not available will continue with the binary as-is.
 	upx --lzma --best $(GO_PKG_BUILD_BIN_DIR)/phonebook
+endif
 endef
 
 define Build/Install
