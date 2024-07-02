@@ -32,6 +32,10 @@ jobs:
           - arm_cortex-a7_neon-vfpv4
 
     steps:
+      - name: Install UPX Packer
+        run: |
+          sudo apt-get install -y upx-ucl
+
       - name: Checkout
         uses: actions/checkout@v4
 
