@@ -48,6 +48,14 @@ jobs:
         run: |
           cp bin/packages/${{ matrix.arch }}/aredn/phonebook*.ipk . || true
 
+      - name: Upload artifacts
+        uses: actions/upload-artifact@v4
+        with:
+          name: ${{ matrix.arch }}-package
+          compression-level: 0 # no compression
+          path: |
+            *.ipk
+
       - name: Release
         uses: softprops/action-gh-release@v1
         if: startsWith(github.ref, 'refs/tags/')
