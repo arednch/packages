@@ -41,6 +41,13 @@ define Package/phonebook/description
   A phonebook fetching and conversion tool intended for AREDN.
 endef
 
+define Build/Compile
+	$(call GoPackage/Build/Compile)
+	# Use UPX to shrink the binary size when available.
+	# When not available will fail and continue with the binary as-is.
+	upx --lzma --best $(GO_PKG_BUILD_BIN_DIR)/phonebook
+endef
+
 define Build/Install
 	#
 endef
