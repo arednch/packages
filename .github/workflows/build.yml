@@ -40,6 +40,7 @@ jobs:
         env:
           ARCH: ${{ matrix.arch }}
           FEEDNAME: aredn
+          EXTRA_FEEDS: "src-git|upx|https://github.com/kuoruan/openwrt-upx.git"
           PACKAGES: phonebook sipserver
           V: sc
 

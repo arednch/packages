@@ -84,6 +84,7 @@ More specifically, an end-to-end path for Ubuntu 22.04:
   ```
   cp feeds.conf.default feeds.conf
   echo 'src-git aredn https://github.com/arednch/packages.git' >> feeds.conf
+  echo 'src-git upx https://github.com/kuoruan/openwrt-upx.git' >> feeds.conf
   ```
 
   Alternatively to the above: In case you want to make local changes to the AREDN CH package definitions, clone them locally and point to them in the feed config:
@@ -94,6 +95,7 @@ More specifically, an end-to-end path for Ubuntu 22.04:
   cd openwrt
   cp feeds.conf.default feeds.conf
   echo 'src-link aredn <insert the absolute path to the arednch cloned repo above>' >> feeds.conf
+  echo 'src-git upx https://github.com/kuoruan/openwrt-upx.git' >> feeds.conf
   ```
 
 - [Prepare and install feeds](https://openwrt.org/docs/guide-developer/toolchain/use-buildsystem#build_system_usage)

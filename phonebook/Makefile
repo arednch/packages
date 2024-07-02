@@ -14,7 +14,7 @@ PKG_SOURCE_DATE:=2024-06-30
 PKG_SOURCE_VERSION:=d87383c9bd8dfac8e9ae83e36db3fb9e6aec2950
 PKG_MIRROR_HASH:=556ffde80396e352438203ef9329caca75a0e48c573e172a544715ae3647d29e
 
-PKG_BUILD_DEPENDS:=golang/host
+PKG_BUILD_DEPENDS:=golang/host upx/host
 PKG_BUILD_PARALLEL:=1
 PKG_BUILD_FLAGS:=no-mips16
 PKG_USE_MIPS16:=0
@@ -43,11 +43,7 @@ endef
 
 define Build/Compile
 	$(call GoPackage/Build/Compile)
-ifneq (, $(shell which upx))
-	# Use UPX to shrink the binary size when available.
-	# When not available will continue with the binary as-is.
-	upx --lzma --best $(GO_PKG_BUILD_BIN_DIR)/phonebook
-endif
+	$(STAGING_DIR_HOST)/bin/upx --lzma --best $(GO_PKG_BUILD_BIN_DIR)/phonebook
 endef
 
 define Build/Install
