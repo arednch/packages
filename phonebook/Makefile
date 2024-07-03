@@ -65,6 +65,7 @@ define Package/phonebook/install
  
 	$(INSTALL_DIR) $(1)/etc
 	$(INSTALL_CONF) ./files/phonebook.config $(1)/etc/phonebook.conf
+	$(INSTALL_CONF) ./files/phonebook_urls $(1)/etc/phonebook_urls
  
 	$(INSTALL_DIR) $(1)/etc/init.d
 	$(INSTALL_BIN) ./files/phonebook.init $(1)/etc/init.d/phonebook
