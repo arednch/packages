@@ -1,23 +1,50 @@
 #!/bin/sh
 
-URL="http://hb9edi-vm-gw.local.mesh/filerepo/Phonebook/AREDN_Phonebook.csv"
+URLS={"http://hb9edi-vm-gw.local.mesh/filerepo/Phonebook/AREDN_Phonebook.csv","http://hb9bla-vm-tunnelserver.local.mesh/filerepo/Phonebook/AREDN_Phonebook.csv"}
 FILE="/www/arednstack/phonebook.csv"
 
 mkdir -p /www/arednstack
 if [ -f "$FILE" ]; then
   if [[ $(find "$FILE" -mmin +1400 -print) ]]; then
     echo "Updating phonebook source (>24hrs old)."
-    curl -o "$FILE" "$URL"
+    for url in "${URLS}"; do
+      curl -L -f -o "$FILE" "$url"
+      if [ $? -eq 0 ]; then
+        break
+      fi
+    done
+    if [ $? -ne 0 ]; then
+      echo "Unable to fetch phonebook"
+      exit 1
+    fi
     /etc/cron.hourly/update_phonebook
   elif [[ "$FORCE_UPDATE" == "TRUE" ]]; then
     echo "Updating phonebook source (forced)."
-    curl -o "$FILE" "$URL"
+    for url in "${URLS}"; do
+      curl -L -f -o "$FILE" "$url"
+      if [ $? -eq 0 ]; then
+        break
+      fi
+    done
+    if [ $? -ne 0 ]; then
+      echo "Unable to fetch phonebook"
+      exit 1
+    fi
     /etc/cron.hourly/update_phonebook
   else
     echo "Not updating phonebook source (<24hrs old)."
   fi
 else
   echo "Updating phonebook source (doesn't exist yet locally)."
-  curl -o "$FILE" "$URL"
+  for url in "${URLS}"; do
+    curl -L -f -o "$FILE" "$url"
+    if [ $? -eq 0 ]; then
+      break
+    fi
+  done
+  if [ $? -ne 0 ]; then
+    echo "Unable to fetch phonebook"
+    exit 1
+  fi
   /etc/cron.hourly/update_phonebook
 fi
