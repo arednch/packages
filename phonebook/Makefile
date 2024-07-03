@@ -55,6 +55,9 @@ define Package/preinst
 if [ ! -f '/etc/httpd.conf' ] || [ "$(grep -c phonebook.sh /etc/httpd.conf)" = "0" ]; then
 	echo '/cgi-bin/phonebook.sh:root:$p$root' >>/etc/httpd.conf
 fi
+if [ ! -f '/etc/httpd.conf' ] || [ "$(grep -c update_urls.sh /etc/httpd.conf)" = "0" ]; then
+	echo '/cgi-bin/update_urls.sh:root:$p$root' >>/etc/httpd.conf
+fi
 /etc/init.d/uhttpd reload
 exit 0
 endef
@@ -76,6 +79,7 @@ define Package/phonebook/install
 
 	$(INSTALL_DIR) $(1)/www/cgi-bin
 	$(INSTALL_BIN) ./files/phonebook.sh $(1)/www/cgi-bin/phonebook.sh
+	$(INSTALL_BIN) ./files/update_urls.sh $(1)/www/cgi-bin/update_urls.sh
 endef
 
 define Package/postinst
