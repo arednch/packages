@@ -21,7 +21,9 @@ PKG_USE_MIPS16:=0
 
 GO_PKG_GCFLAGS:=-l -B
 GO_PKG_LDFLAGS:=-s -w
-GO_PKG_LDFLAGS_X:=main.Version=$(PKG_VERSION)-$(PKG_RELEASE)
+GO_PKG_LDFLAGS_X:= \
+	main.CommitSHA=$(PKG_SOURCE_VERSION) \
+	main.Version=$(PKG_VERSION)-$(PKG_RELEASE)
 
 GO_PKG:=github.com/arednch/phonebook
 
