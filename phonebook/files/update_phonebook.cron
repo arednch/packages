@@ -1,2 +1,0 @@
-#!/bin/sh
-/usr/bin/phonebook --conf=/etc/phonebook.conf --server=false
