@@ -45,7 +45,7 @@ endef
 
 define Build/Compile
 	$(call GoPackage/Build/Compile)
-	$(STAGING_DIR_HOST)/bin/upx --lzma --best $(GO_PKG_BUILD_BIN_DIR)/phonebook
+	$(STAGING_DIR_HOST)/bin/upx -4 $(GO_PKG_BUILD_BIN_DIR)/phonebook
 endef
 
 define Build/Install
