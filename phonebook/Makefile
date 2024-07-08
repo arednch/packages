@@ -11,7 +11,7 @@ PKG_MAINTAINER:=Martin Suess
 PKG_SOURCE_PROTO:=git
 PKG_SOURCE_URL:=https://github.com/arednch/phonebook.git
 PKG_SOURCE_DATE:=2024-07-08
-PKG_SOURCE_VERSION:=519cc75286e389f41627a9cf24073668c176b251
+PKG_SOURCE_VERSION:=c60d840ae9ad4f1dd40419baf2c0d90972c44cfd
 PKG_MIRROR_HASH:=7a039f794ed6e41ac6a61ae7314161d7ffe95cce8877588859c79e442d49f766
 
 PKG_BUILD_DEPENDS:=golang/host upx/host
@@ -61,6 +61,9 @@ define Package/phonebook/install
  
 	$(INSTALL_DIR) $(1)/etc/init.d
 	$(INSTALL_BIN) ./files/phonebook.init $(1)/etc/init.d/phonebook
+
+	$(INSTALL_DIR) $(1)/www/
+	$(INSTALL_DATA) ./files/bootstrap.min.css $(1)/www/bootstrap.min.css
 endef
 
 define Package/postinst
