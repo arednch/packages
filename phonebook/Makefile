@@ -1,7 +1,7 @@
 include $(TOPDIR)/rules.mk
 
 PKG_NAME:=phonebook
-PKG_VERSION:=1.10.1
+PKG_VERSION:=1.10.2
 PKG_RELEASE:=$(AUTORELEASE)
 
 PKG_LICENSE:=Apache-2.0
@@ -10,8 +10,8 @@ PKG_MAINTAINER:=Martin Suess
 
 PKG_SOURCE_PROTO:=git
 PKG_SOURCE_URL:=https://github.com/arednch/phonebook.git
-PKG_SOURCE_DATE:=2024-07-13
-PKG_SOURCE_VERSION:=06512729b903d28f1f058921efd20f59f17ec430
+PKG_SOURCE_DATE:=2024-07-15
+PKG_SOURCE_VERSION:=3da19f322e1b09146425e1493308333707b64fc4
 PKG_MIRROR_HASH:=85cf5f36507cf9c57fc5b0f82a12970bf952ecb97f6661706d23c7cd518dd29d
 
 PKG_BUILD_DEPENDS:=golang/host upx/host
@@ -55,10 +55,10 @@ endef
 define Package/phonebook/install
 	$(INSTALL_DIR) $(1)/usr/bin
 	$(INSTALL_BIN) $(GO_PKG_BUILD_BIN_DIR)/phonebook $(1)/usr/bin/phonebook
- 
+
 	$(INSTALL_DIR) $(1)/etc
 	$(INSTALL_CONF) ./files/phonebook.config $(1)/etc/phonebook.conf
- 
+
 	$(INSTALL_DIR) $(1)/etc/init.d
 	$(INSTALL_BIN) ./files/phonebook.init $(1)/etc/init.d/phonebook
 
