@@ -7,7 +7,7 @@ cp arm_cortex-a7_neon-vfpv4.config .config
 make tools/compile
 make toolchain/compile
 make package/phonebook/compile V=99
-make package/sipserver/compile V=99
+# make package/sipserver/compile V=99
 # Package AC3
 rm -rf /tmp/arm_cortex-a7_neon-vfpv4
 mkdir /tmp/arm_cortex-a7_neon-vfpv4
@@ -24,7 +24,7 @@ cp x86_64.config .config
 make tools/compile
 make toolchain/compile
 make package/phonebook/compile V=99
-make package/sipserver/compile V=99
+# make package/sipserver/compile V=99
 # Package x86
 rm -rf /tmp/x86_64
 mkdir /tmp/x86_64
@@ -41,7 +41,7 @@ cp mips_24kc.config .config
 make tools/compile
 make toolchain/compile
 make package/phonebook/compile V=99
-make package/sipserver/compile V=99
+# make package/sipserver/compile V=99
 # Build AC Lite
 rm -rf /tmp/mips_24kc
 mkdir /tmp/mips_24kc
