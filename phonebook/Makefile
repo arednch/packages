@@ -64,12 +64,12 @@ endef
 
 define Package/phonebook/preinst
 #!/bin/sh
-mkdir -p /www/arednstack
 exit 0
 endef
 
 define Package/phonebook/postinst
 #!/bin/sh
+mkdir -p /www/arednstack
 chmod 755 /etc/init.d/phonebook
 exit 0
 endef
