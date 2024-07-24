@@ -13,7 +13,11 @@ start_service() {
 	procd_set_param command "$PROG"
 	procd_append_param command --conf "/etc/phonebook.conf" --server
 
-	procd_set_param respawn ${respawn_threshold:-3600} ${respawn_timeout:-5} ${respawn_retry:-5}
+  # Parameters:
+	# Threshold: 3600s to which each retry counts towards.
+	# Timeout: 10s before the service is started again.
+  # Retry: Retry max 10 times per <threshold> before giving up.
+	procd_set_param respawn 3600 10 10
 
 	procd_set_param stdout 1
 	procd_set_param stderr 1

@@ -68,6 +68,7 @@ endef
 
 define Package/postinst
 #!/bin/sh
+mkdir -p /www/arednstack
 chmod 755 /etc/init.d/phonebook
 /etc/init.d/phonebook enable
 /etc/init.d/phonebook start
