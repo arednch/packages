@@ -2,7 +2,7 @@ include $(TOPDIR)/rules.mk
 
 PKG_NAME:=phonebook
 PKG_VERSION:=1.11
-PKG_RELEASE:=1
+PKG_RELEASE:=3
 
 PKG_LICENSE:=Apache-2.0
 PKG_LICENSE_FILES:=LICENSE
@@ -48,10 +48,6 @@ define Build/Compile
 	$(STAGING_DIR_HOST)/bin/upx --lzma -6 $(GO_PKG_BUILD_BIN_DIR)/phonebook
 endef
 
-define Build/Install
-	#
-endef
-
 define Package/phonebook/install
 	$(INSTALL_DIR) $(1)/usr/bin
 	$(INSTALL_BIN) $(GO_PKG_BUILD_BIN_DIR)/phonebook $(1)/usr/bin/phonebook
@@ -66,12 +62,30 @@ define Package/phonebook/install
 	$(INSTALL_DATA) ./files/bootstrap.min.css $(1)/www/bootstrap.min.css
 endef
 
-define Package/postinst
+define Package/phonebook/preinst
 #!/bin/sh
 mkdir -p /www/arednstack
+exit 0
+endef
+
+define Package/phonebook/postinst
+#!/bin/sh
 chmod 755 /etc/init.d/phonebook
 /etc/init.d/phonebook enable
 /etc/init.d/phonebook start
+exit 0
+endef
+
+define Package/phonebook/prerm
+#!/bin/sh
+/etc/init.d/phonebook stop
+/etc/init.d/phonebook disable
+exit 0
+endef
+
+define Package/phonebook/postrm
+#!/bin/sh
+rm -rf /www/arednstack
 exit 0
 endef
 
