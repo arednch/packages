@@ -71,15 +71,11 @@ endef
 define Package/phonebook/postinst
 #!/bin/sh
 chmod 755 /etc/init.d/phonebook
-/etc/init.d/phonebook enable
-/etc/init.d/phonebook start
 exit 0
 endef
 
 define Package/phonebook/prerm
 #!/bin/sh
-/etc/init.d/phonebook stop
-/etc/init.d/phonebook disable
 exit 0
 endef
 
