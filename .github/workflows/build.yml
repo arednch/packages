@@ -36,7 +36,7 @@ jobs:
         uses: actions/checkout@v4
 
       - name: Build
-        uses: openwrt/gh-action-sdk@v2
+        uses: openwrt/gh-action-sdk@v5.4
         env:
           ARCH: ${{ matrix.arch }}
           FEEDNAME: aredn
