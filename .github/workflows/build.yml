@@ -47,14 +47,17 @@ jobs:
           PACKAGES: phonebook
           V: sc
 
-      - name: Move created packages to project dir
+      - name: Move created IPK packages to project dir
         if: ${{ matrix.openwrt != 'main' }}
         run: |
           cp bin/packages/${{ matrix.arch }}/aredn/phonebook*.ipk . || true
+
+      - name: Move created APK packages to project dir
+        if: ${{ matrix.openwrt == 'main' }}
+        run: |
           cp bin/packages/${{ matrix.arch }}/aredn/phonebook*.apk . || true
 
       - name: Upload artifacts
-        if: ${{ github.ref_name == 'main' }}
         uses: actions/upload-artifact@v4
         with:
           name: ${{ matrix.arch }}-${{ matrix.openwrt }}-package
