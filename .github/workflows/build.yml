@@ -47,15 +47,25 @@ jobs:
           PACKAGES: phonebook
           V: sc
 
-      - name: Move created IPK packages to project dir
-        if: ${{ matrix.openwrt != 'main' }}
+      - name: Move created IPK packages to project dir with tag
+        if: ${{ matrix.openwrt != 'main' && github.event.release.tag_name != '' }}
         run: |
           cp bin/packages/${{ matrix.arch }}/aredn/phonebook*.ipk ./phonebook-${{ github.event.release.tag_name }}-${{ matrix.arch }}.ipk || true
 
-      - name: Move created APK packages to project dir
-        if: ${{ matrix.openwrt == 'main' }}
+      - name: Move created IPK packages to project dir without tag
+        if: ${{ matrix.openwrt != 'main' && github.event.release.tag_name == '' }}
+        run: |
+          cp bin/packages/${{ matrix.arch }}/aredn/phonebook*.ipk ./phonebook-${{ matrix.arch }}.ipk || true
+
+      - name: Move created APK packages to project dir with tag
+        if: ${{ matrix.openwrt == 'main' && github.event.release.tag_name != '' }}
         run: |
           cp bin/packages/${{ matrix.arch }}/aredn/phonebook*.apk ./phonebook-${{ github.event.release.tag_name }}-${{ matrix.arch }}.apk || true
+
+      - name: Move created APK packages to project dir without tag
+        if: ${{ matrix.openwrt == 'main' && github.event.release.tag_name == '' }}
+        run: |
+          cp bin/packages/${{ matrix.arch }}/aredn/phonebook*.apk ./phonebook-${{ matrix.arch }}.apk || true
 
       - name: Upload artifacts
         uses: actions/upload-artifact@v4
