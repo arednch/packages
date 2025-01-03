@@ -26,6 +26,9 @@ jobs:
       contents: write
     strategy:
       matrix:
+        openwrt:
+          - main          # APK packages going forward
+          - openwrt-24.10 # IPK packages built using an older version
         arch:
           - x86_64
           - mips_24kc
@@ -38,24 +41,32 @@ jobs:
       - name: Build
         uses: openwrt/gh-action-sdk@main
         env:
-          ARCH: ${{ matrix.arch }}-openwrt-24.10
+          ARCH: ${{ matrix.arch }}-${{ matrix.openwrt }}
           FEEDNAME: aredn
           EXTRA_FEEDS: "src-git|upx|https://github.com/kuoruan/openwrt-upx.git"
           PACKAGES: phonebook
           V: sc
 
-      - name: List created artifacts
-        run: |
-          find bin/packages -name "*.ipk" -type f
-
       - name: Move created packages to project dir
+        if: ${{ matrix.openwrt != 'main' }}
         run: |
           cp bin/packages/${{ matrix.arch }}/aredn/phonebook*.ipk . || true
+          cp bin/packages/${{ matrix.arch }}/aredn/phonebook*.apk . || true
 
-      - name: Upload artifacts
+      - name: Upload APK artifacts
+        if: ${{ github.ref_name == 'main' }}
         uses: actions/upload-artifact@v4
         with:
-          name: ${{ matrix.arch }}-package
+          name: ${{ matrix.arch }}-apk
+          compression-level: 0 # no compression
+          path: |
+            *.apk
+
+      - name: Upload IPK artifacts
+        if: ${{ github.ref_name != 'main' }}
+        uses: actions/upload-artifact@v4
+        with:
+          name: ${{ matrix.arch }}-ipk
           compression-level: 0 # no compression
           path: |
             *.ipk
@@ -71,3 +82,4 @@ jobs:
           draft: ${{ github.event.release.draft }}
           files: |
             *.ipk
+            *.apk
