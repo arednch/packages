@@ -50,12 +50,12 @@ jobs:
       - name: Move created IPK packages to project dir
         if: ${{ matrix.openwrt != 'main' }}
         run: |
-          cp bin/packages/${{ matrix.arch }}/aredn/phonebook*.ipk . || true
+          cp bin/packages/${{ matrix.arch }}/aredn/phonebook*.ipk ./phonebook-${{ matrix.arch }}.ipk || true
 
       - name: Move created APK packages to project dir
         if: ${{ matrix.openwrt == 'main' }}
         run: |
-          cp bin/packages/${{ matrix.arch }}/aredn/phonebook*.apk . || true
+          cp bin/packages/${{ matrix.arch }}/aredn/phonebook*.apk ./phonebook-${{ matrix.arch }}.apk || true
 
       - name: Upload artifacts
         uses: actions/upload-artifact@v4
