@@ -53,23 +53,15 @@ jobs:
           cp bin/packages/${{ matrix.arch }}/aredn/phonebook*.ipk . || true
           cp bin/packages/${{ matrix.arch }}/aredn/phonebook*.apk . || true
 
-      - name: Upload APK artifacts
+      - name: Upload artifacts
         if: ${{ github.ref_name == 'main' }}
         uses: actions/upload-artifact@v4
         with:
-          name: ${{ matrix.arch }}-apk
-          compression-level: 0 # no compression
-          path: |
-            *.apk
-
-      - name: Upload IPK artifacts
-        if: ${{ github.ref_name != 'main' }}
-        uses: actions/upload-artifact@v4
-        with:
-          name: ${{ matrix.arch }}-ipk
+          name: ${{ matrix.arch }}-${{ matrix.openwrt }}-package
           compression-level: 0 # no compression
           path: |
             *.ipk
+            *.apk
 
       - name: Release
         uses: softprops/action-gh-release@v1
