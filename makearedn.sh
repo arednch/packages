@@ -40,12 +40,12 @@ cp bin/packages/x86_64/aredn/phonebook_* bin/
 cp mips_24kc.config .config
 make tools/compile
 make toolchain/compile
-make package/phonebook/compile V=99
+make package/phonebook-min/compile V=99
 # make package/sipserver/compile V=99
 # Build AC Lite
 rm -rf /tmp/mips_24kc
 mkdir /tmp/mips_24kc
-cp bin/packages/mips_24kc/aredn/phonebook_* bin/
+cp bin/packages/mips_24kc/aredn/phonebook-min_* bin/
 # cp bin/packages/mips_24kc/aredn/phonebook_* /tmp/mips_24kc
 # cp bin/packages/mips_24kc/aredn/sipserver_* /tmp/mips_24kc
 # cp bin/targets/ath79/mikrotik/packages/libstdcpp6_* /tmp/mips_24kc

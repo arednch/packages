@@ -1,6 +1,6 @@
 include $(TOPDIR)/rules.mk
 
-PKG_NAME:=phonebook
+PKG_NAME:=phonebook-min
 PKG_VERSION:=1.0
 PKG_RELEASE:=2
 
@@ -30,7 +30,7 @@ GO_PKG:=github.com/arednch/phonebook
 include $(INCLUDE_DIR)/package.mk
 include $(TOPDIR)/feeds/packages/lang/golang/golang-package.mk
 
-define Package/phonebook
+define Package/phonebook-min
   SECTION:=net
   CATEGORY:=Network
   SUBMENU:=Telephony
@@ -39,7 +39,7 @@ define Package/phonebook
   DEPENDS:=$(GO_ARCH_DEPENDS) +ca-bundle
 endef
 
-define Package/phonebook/description
+define Package/phonebook-min/description
   A phonebook fetching and conversion tool intended for AREDN.
 endef
 
@@ -48,7 +48,7 @@ define Build/Compile
 	$(STAGING_DIR_HOST)/bin/upx --lzma -6 $(GO_PKG_BUILD_BIN_DIR)/phonebook
 endef
 
-define Package/phonebook/install
+define Package/phonebook-min/install
 	$(INSTALL_DIR) $(1)/usr/bin
 	$(INSTALL_BIN) $(GO_PKG_BUILD_BIN_DIR)/phonebook $(1)/usr/bin/phonebook
 
@@ -64,23 +64,23 @@ define Package/phonebook/preinst
 exit 0
 endef
 
-define Package/phonebook/postinst
+define Package/phonebook-min/postinst
 #!/bin/sh
 mkdir -p /www/arednstack
 chmod 755 /etc/cron.hourly/phonebook
 exit 0
 endef
 
-define Package/phonebook/prerm
+define Package/phonebook-min/prerm
 #!/bin/sh
 exit 0
 endef
 
-define Package/phonebook/postrm
+define Package/phonebook-min/postrm
 #!/bin/sh
 rm -rf /www/arednstack
 exit 0
 endef
 
-$(eval $(call GoBinPackage,phonebook))
-$(eval $(call BuildPackage,phonebook))
+$(eval $(call GoBinPackage,phonebook-min))
+$(eval $(call BuildPackage,phonebook-min))
