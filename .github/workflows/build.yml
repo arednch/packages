@@ -20,7 +20,7 @@ on:
 
 jobs:
   build:
-    name: Build ${{ matrix.package }} ${{ matrix.arch }} ${{ matrix.openwrt }} ${{ github.ref }}
+    name: Build ${{ matrix.package }} ${{ matrix.arch }} ${{ matrix.openwrt }}
     runs-on: ubuntu-latest
     permissions:
       contents: write
