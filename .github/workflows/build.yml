@@ -33,6 +33,9 @@ jobs:
           - x86_64
           - mips_24kc
           - arm_cortex-a7_neon-vfpv4
+        package:
+          - phonebook
+          - phonebook-min
 
     steps:
       - name: Checkout
@@ -44,28 +47,28 @@ jobs:
           ARCH: ${{ matrix.arch }}-${{ matrix.openwrt }}
           FEEDNAME: aredn
           EXTRA_FEEDS: "src-git|upx|https://github.com/kuoruan/openwrt-upx.git"
-          PACKAGES: ${{ matrix.arch == 'mips_24kc' && 'phonebook-min' || 'phonebook' }}
+          PACKAGES: ${{ matrix.package }}
           V: sc
 
       - name: Move created IPK packages to project dir with tag
         if: ${{ matrix.openwrt != 'main' && github.event.release.tag_name != '' }}
         run: |
-          cp bin/packages/${{ matrix.arch }}/aredn/phonebook*.ipk ./phonebook-${{ github.event.release.tag_name }}-${{ matrix.arch }}.ipk || true
+          cp bin/packages/${{ matrix.arch }}/aredn/${{ matrix.package }}*.ipk ./${{ matrix.package }}-${{ github.event.release.tag_name }}-${{ matrix.arch }}.ipk || true
 
       - name: Move created IPK packages to project dir without tag
         if: ${{ matrix.openwrt != 'main' && github.event.release.tag_name == '' }}
         run: |
-          cp bin/packages/${{ matrix.arch }}/aredn/phonebook*.ipk ./phonebook-${{ matrix.arch }}.ipk || true
+          cp bin/packages/${{ matrix.arch }}/aredn/${{ matrix.package }}*.ipk ./${{ matrix.package }}-${{ matrix.arch }}.ipk || true
 
       - name: Move created APK packages to project dir with tag
         if: ${{ matrix.openwrt == 'main' && github.event.release.tag_name != '' }}
         run: |
-          cp bin/packages/${{ matrix.arch }}/aredn/phonebook*.apk ./phonebook-${{ github.event.release.tag_name }}-${{ matrix.arch }}.apk || true
+          cp bin/packages/${{ matrix.arch }}/aredn/${{ matrix.package }}*.apk ./${{ matrix.package }}-${{ github.event.release.tag_name }}-${{ matrix.arch }}.apk || true
 
       - name: Move created APK packages to project dir without tag
         if: ${{ matrix.openwrt == 'main' && github.event.release.tag_name == '' }}
         run: |
-          cp bin/packages/${{ matrix.arch }}/aredn/phonebook*.apk ./phonebook-${{ matrix.arch }}.apk || true
+          cp bin/packages/${{ matrix.arch }}/aredn/${{ matrix.package }}*.apk ./${{ matrix.package }}-${{ matrix.arch }}.apk || true
 
       - name: Upload artifacts
         uses: actions/upload-artifact@v4
