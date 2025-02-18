@@ -73,7 +73,7 @@ jobs:
       - name: Upload artifacts
         uses: actions/upload-artifact@v4
         with:
-          name: ${{ matrix.arch }}-${{ matrix.openwrt }}-package
+          name: ${{ matrix.package }}-${{ matrix.arch }}-${{ matrix.openwrt }}-package
           compression-level: 0 # no compression
           path: |
             *.ipk
