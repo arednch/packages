@@ -7,7 +7,7 @@ This is a repo to hold AREDN packages (OpenWrt) as a separate package feed. Thes
 The following packages are currently supported:
 
 - [phonebook](https://github.com/arednch/packages/tree/main/phonebook): A phonebook service running on the AREDN Node fetching a CSV from an upstream server and converting into XML phonebooks which can be fetched by phones.
-  
+
     * See the [package folder](https://github.com/arednch/packages/tree/main/phonebook) for AREDN package specific options (i.e. where the configuration file resides).
     * See the [repository](https://github.com/arednch/phonebook) for more details including supported flags / configuration options.
 
@@ -148,9 +148,12 @@ Important manual changes to the configs (via `make menuconfig` or directly in th
 - `Subtarget`: Pick the platform you want to compile for. If you're unsure, see [Supported Devices](http://downloads.arednmesh.org/firmware/html/SUPPORTED_DEVICES.md) for more info.
 - `Target Profile`: Pick the platform you want to compile for. If you're unsure, see [Supported Devices](http://downloads.arednmesh.org/firmware/html/SUPPORTED_DEVICES.md) for more info.
 - `Global build settings` > `Cryptographically signed package lists`: `off`
-- `Languages` > `Go` > `Configuration` > `External bootstrap Go root directory`: `/usr/bin` (set to whatever your `go` binary is in)
+- `Languages` > `Go` > `golang`: `M`
+- `Languages` > `Go` > `Configuration` > `External bootstrap Go root directory`: `/usr/bin/` (set to whatever your `go` binary is in)
+- `Languages` > `Rust` > `rust`: `M`
 - `Base system` > `libstdcpp`: `M`
 - `Network` > `Telephony` > `phonebook`: `M`
+- `Network` > `Telephony` > `phonebook-min`: `M`
 - `Network` > `Telephony` > `sipserver`: `M`
 
 #### Prepare feeds
