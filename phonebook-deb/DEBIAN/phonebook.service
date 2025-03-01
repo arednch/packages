@@ -1,0 +1,13 @@
+[Unit]
+Description=Phonebook service for AREDN networks
+After=network.target
+
+[Service]
+Type=simple
+ExecStart=/usr/bin/phonebook --conf "/etc/phonebook.conf" --server
+Restart=always
+RestartSec=10
+
+[Install]
+Alias=phonebook
+WantedBy=multi-user.target

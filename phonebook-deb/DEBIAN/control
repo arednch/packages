@@ -1,0 +1,9 @@
+Package: phonebook
+Version: 1.11.2
+Maintainer: https://github.com/arednch/
+Architecture: all
+Essential: no
+Priority: optional
+Description: A phonebook fetching and conversion tool intended for AREDN.
+Build-Depends: debhelper (>=9.0.0),
+               dh-systemd (>= 1.5)

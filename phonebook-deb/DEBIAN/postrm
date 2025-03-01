@@ -1,0 +1,6 @@
+#!/bin/sh
+rm -rf /www/arednstack
+
+#DEBHELPER#
+
+exit 0
