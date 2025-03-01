@@ -9,5 +9,5 @@ Restart=always
 RestartSec=10
 
 [Install]
-Alias=phonebook
+Alias=phonebook.service
 WantedBy=multi-user.target
