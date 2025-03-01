@@ -1,5 +1,10 @@
 #!/bin/sh
+set -e
 
 #DEBHELPER#
+
+echo "Stop phonebook service"
+systemctl stop phonebook
+systemctl disable phonebook
 
 exit 0

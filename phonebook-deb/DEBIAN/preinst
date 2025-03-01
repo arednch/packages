@@ -1,5 +1,4 @@
 #!/bin/sh
-
-#DEBHELPER#
+set -e
 
 exit 0

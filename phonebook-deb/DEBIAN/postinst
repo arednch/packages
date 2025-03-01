@@ -1,6 +1,14 @@
 #!/bin/sh
+set -e
+
 mkdir -p /www/arednstack
 
 #DEBHELPER#
+
+systemctl daemon-reload
+echo "Enable phonebook service to start on boot"
+systemctl enable phonebook
+echo "Start phonebook service"
+systemctl start phonebook
 
 exit 0
