@@ -75,7 +75,7 @@ jobs:
 
       - name: Build .deb
         run: |
-          ls -alR phonebook-deb
+          mkdir -p phonebook-deb/usr/bin
           cp -fr phonebook-repo/phonebook phonebook-deb/usr/bin/phonebook
           dpkg-deb --build --root-owner-group phonebook-deb
           cp phonebook-deb/*.deb phonebook-${{ matrix.arch.name }}.deb
