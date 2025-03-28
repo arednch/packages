@@ -28,7 +28,7 @@ jobs:
       matrix:
         arch:
           - image: ubuntu-24.04
-            name: x86_64
+            name: amd64
           - image: ubuntu-24.04-arm
             name: arm64
           - image: ubuntu-24.04-arm
