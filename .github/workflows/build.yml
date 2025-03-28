@@ -19,7 +19,75 @@ on:
         - debug
 
 jobs:
-  build:
+  build-deb:
+    name: Build deb ${{ matrix.package }} ${{ matrix.arch }}
+    runs-on: ${{ matrix.arch.image }}
+    permissions:
+      contents: write
+    strategy:
+      matrix:
+        arch:
+          - image: ubuntu-24.04
+            name: x86_64
+          - image: ubuntu-24.04-arm
+            name: arm64
+          - image: ubuntu-24.04-arm
+            name: arm
+        package:
+          - phonebook
+    env:
+      GOOS: "linux"
+      GOARCH: "${{ matrix.arch.name }}"
+      GOARM: "7"
+      CGO_ENABLED: "0"
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Checkout source
+        uses: actions/checkout@v4
+        with:
+          repository: arednch/phonebook
+          path: phonebook-repo
+
+      - name: Set up Go
+        uses: actions/setup-go@v5
+        with:
+          go-version: ">=1.23"
+
+      - name: Build Go binary
+        run: |
+          cd phonebook-repo
+          go build -v -o phonebook .
+
+      - name: Build .deb
+        run: |
+          cp -fr phonebook-repo/phonebook phonebook-deb/usr/bin/
+          dpkg-deb --build --root-owner-group phonebook-deb
+          cp phonebook-deb/*.deb phonebook-${{ matrix.arch.name }}.deb
+
+      - name: Upload artifacts
+        uses: actions/upload-artifact@v4
+        with:
+          name: ${{ matrix.package }}-${{ matrix.arch.name }}-package
+          compression-level: 0 # no compression
+          path: |
+            *.deb
+
+      - name: Release
+        uses: softprops/action-gh-release@v1
+        if: startsWith(github.ref, 'refs/tags/')
+        with:
+          name: ${{ github.event.release.tag_name }}
+          tag_name: ${{ github.event.release.tag_name }}
+          body: ${{ github.event.release.body }}
+          prerelease: ${{ github.event.release.prerelease }}
+          draft: ${{ github.event.release.draft }}
+          files: |
+            *.deb
+
+  build-aredn:
     name: Build ${{ matrix.package }} ${{ matrix.arch }} ${{ matrix.openwrt }}
     runs-on: ubuntu-latest
     permissions:
@@ -35,7 +103,6 @@ jobs:
           - arm_cortex-a7_neon-vfpv4
         package:
           - phonebook
-          - phonebook-min
 
     steps:
       - name: Checkout
