@@ -20,7 +20,7 @@ on:
 
 jobs:
   build-deb:
-    name: Build deb ${{ matrix.package }} ${{ matrix.arch }}
+    name: Build deb ${{ matrix.package }} ${{ matrix.arch.name }}
     runs-on: ${{ matrix.arch.image }}
     permissions:
       contents: write
@@ -51,6 +51,16 @@ jobs:
           repository: arednch/phonebook
           path: phonebook-repo
 
+      - name: Get version
+        id: get_version
+        run: |
+          if [[ $GITHUB_REF == refs/tags/* ]]; then
+            VERSION=${GITHUB_REF#refs/tags/v}
+          else
+            VERSION='main'
+          fi
+          echo "version=$VERSION" >> $GITHUB_OUTPUT
+
       - name: Set up Go
         uses: actions/setup-go@v5
         with:
@@ -60,7 +70,8 @@ jobs:
       - name: Build Go binary
         run: |
           cd phonebook-repo
-          go build -v -o phonebook .
+          go build -v -ldflags="-s -w -X 'main.CommitSHA=$(git rev-parse HEAD)' -X 'main.Version=${{ steps.get_version.outputs.version }}'" -o phonebook .
+          cd ..
 
       - name: Build .deb
         run: |
