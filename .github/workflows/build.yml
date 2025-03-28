@@ -72,13 +72,11 @@ jobs:
         run: |
           cd phonebook-repo
           go build -v -ldflags="-s -w -X 'main.CommitSHA=${{ steps.checkout_source.outputs.commit }}' -X 'main.Version=${{ steps.get_version.outputs.version }}'" -o phonebook .
-          pwd
-          ls -al
 
       - name: Build .deb
         run: |
-          ls -al
-          cp -fr phonebook-repo/phonebook phonebook-deb/usr/bin/
+          ls -alR phonebook-deb
+          cp -fr phonebook-repo/phonebook phonebook-deb/usr/bin/phonebook
           dpkg-deb --build --root-owner-group phonebook-deb
           cp phonebook-deb/*.deb phonebook-${{ matrix.arch.name }}.deb
 
