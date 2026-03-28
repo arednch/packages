@@ -1,5 +1,8 @@
 # AREDN-Packages
 
+> [!CAUTION]
+> **This organization is being sunset and all repositories with it. We'll delete this organization and its repositories in the near future. If you still need any of this code, please fork it ~now.**
+
 This is a repo to hold AREDN packages (OpenWrt) as a separate package feed. These include primarily Makefiles for custom packages.
 
 ## Packages
